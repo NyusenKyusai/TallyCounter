@@ -30,28 +30,9 @@ class TallyCounter extends JFrame {
         container.add(label);
         container.add(incrementButton);
         container.add(resetButton);
-        
-        class IncrementButtonHandler implements ActionListener {
-            @Override
-            public void actionPerformed(ActionEvent event){
-                counter.increment();
-                update();
-            }
-        }
-        
-        IncrementButtonHandler ibh = new IncrementButtonHandler();
-        incrementButton.addActionListener(ibh);
-        
-        class ResetButtonHandler implements ActionListener {
-            @Override
-            public void actionPerformed(ActionEvent event){
-                counter.reset();
-                update();
-            }
-        }
-        
-        ResetButtonHandler rbh = new ResetButtonHandler();
-        resetButton.addActionListener(rbh);
+                
+        incrementButton.addActionListener(new IncrementButtonHandler(counter, this));
+        resetButton.addActionListener(new ResetButtonHandler(counter, this));
         
         setSize(150, 450);
         setVisible(true);
